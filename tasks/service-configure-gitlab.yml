@@ -1,6 +1,17 @@
 #SPDX-License-Identifier: GPL-2.0-or-later
 ---
-# Configure OpenProject
+# Configure GitLab
+- name: Firewall Rules for HTTP
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    state: enabled
+    permanent: true
+    immediate: true
+    offline: true
+  with_items:
+    - http
+    - https
+
 - name: GitLab Template Configs
   ansible.builtin.template:
     src: "templates/gitlab.rb.j2"
@@ -11,7 +22,7 @@
   notify:
     - Restart postfix
 
-# ToDo: Launch OpenProject
-# - name: Launch OpenProject
-#   ansible.builtin.command: openproject configure
+# ToDo: Launch GitLab
+# - name: Launch GitLab
+#   ansible.builtin.command: gitlab-ctl reconfigure
 
