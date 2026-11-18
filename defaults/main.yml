@@ -1,0 +1,16 @@
+#SPDX-License-Identifier: GPL-2.0-or-later
+---
+# Override these in the global group_vars or vars/mainl.yml
+
+# Service RPMS
+dnf_packages:
+  - postfix
+  - gitlab-ce
+
+# Shared Variables
+server_name: www.example.com
+db_host: db.your.tld
+db_port: 5432
+db_user: gitlab
+db_name: gitlab
+db_password: "override_with_inventory_vault"

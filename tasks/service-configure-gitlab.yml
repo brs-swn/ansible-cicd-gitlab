@@ -1,0 +1,17 @@
+#SPDX-License-Identifier: GPL-2.0-or-later
+---
+# Configure OpenProject
+- name: GitLab Template Configs
+  ansible.builtin.template:
+    src: "templates/gitlab.rb.j2"
+    dest: "/etc/gitlab/gitlab.rb"
+    owner: "root"
+    group: "root"
+    mode: "0600"
+  notify:
+    - Restart postfix
+
+# ToDo: Launch OpenProject
+# - name: Launch OpenProject
+#   ansible.builtin.command: openproject configure
+
